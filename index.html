@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Угарные фото Олега</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --burgundy: #800020;
+            --dark-burgundy: #5a0017;
+            --brown: #3d2b1f;
+            --dark-brown: #2c1c12;
+            --navy: #0a1931;
+            --dark-navy: #071425;
+            --gold: #d4af37;
+            --light-gold: #f5e7a1;
+            --gray: #8a8a8a;
+            --light-gray: #d0d0d0;
+            --card-bg: rgba(44, 28, 18, 0.7);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--dark-brown) 100%);
+            color: var(--light-gray);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* Мобильная навигация */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 25, 49, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .mobile-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-title i {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .mobile-title span {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .mobile-title .oleg {
+            color: var(--gold);
+        }
+
+        .mobile-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .mobile-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(128, 0, 32, 0.3);
+            border: none;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mobile-btn:hover {
+            background: rgba(128, 0, 32, 0.5);
+        }
+
+        /* Hero секция */
+        .hero-section {
+            margin-top: 60px;
+            padding: 20px 16px;
+            text-align: center;
+        }
+
+        .hero-content {
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.15), rgba(61, 43, 31, 0.15));
+            border-radius: 16px;
+            padding: 24px 16px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--light-gold);
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .counter-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Фильтры */
+        .filters-section {
+            padding: 0 16px 16px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            background: rgba(44, 28, 18, 0.7);
+            border: 1px solid var(--brown);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-tab {
+            flex: 0 0 auto;
+            padding: 10px 18px;
+            background: rgba(44, 28, 18, 0.7);
+            border: 1px solid var(--brown);
+            border-radius: 10px;
+            color: var(--light-gray);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-tab.active {
+            background: var(--burgundy);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Галерея */
+        .gallery-container {
+            padding: 0 16px 20px;
+        }
+
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .gallery-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .view-toggle {
+            display: flex;
+            background: rgba(44, 28, 18, 0.7);
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid var(--brown);
+        }
+
+        .view-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: transparent;
+            border: none;
+            color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active {
+            background: var(--burgundy);
+            color: var(--gold);
+        }
+
+        /* Мозаичная галерея */
+        .mosaic-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .mosaic-gallery {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mosaic-gallery {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .mosaic-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            background: var(--card-bg);
+            border: 1px solid rgba(128, 0, 32, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mosaic-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--gold);
+        }
+
+        .mosaic-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .mosaic-item:hover .mosaic-img {
+            transform: scale(1.05);
+        }
+
+        .photo-number {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--burgundy);
+            color: var(--gold);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid var(--gold);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Список */
+        .list-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .list-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid rgba(128, 0, 32, 0.3);
+            transition: all 0.2s;
+        }
+
+        .list-item:hover {
+            border-color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .list-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .list-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .list-number {
+            font-size: 12px;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .list-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .list-desc {
+            font-size: 12px;
+            color: var(--light-gray);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 16px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--brown);
+            color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0 12px;
+        }
+
+        .page-btn:hover:not(.active):not(:disabled) {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .page-btn.active {
+            background: var(--burgundy);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 500px;
+            background: linear-gradient(135deg, var(--dark-navy), var(--dark-brown));
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--burgundy);
+            animation: slideUp 0.4s;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-img-container {
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 50vh;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 50vh;
+            object-fit: contain;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px;
+            pointer-events: none;
+        }
+
+        .modal-nav-btn {
+            pointer-events: all;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(128, 0, 32, 0.7);
+            transform: scale(1.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(128, 0, 32, 0.7);
+            transform: rotate(90deg);
+        }
+
+        .modal-info {
+            padding: 16px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        /* Футер */
+        .footer {
+            padding: 24px 16px;
+            text-align: center;
+            border-top: 1px solid rgba(128, 0, 32, 0.3);
+            margin-top: 20px;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Адаптивные улучшения */
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 13px;
+            }
+
+            .modal-content {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .modal-img-container {
+                min-height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mosaic-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .hero-section {
+                padding: 16px 12px;
+            }
+
+            .filters-section,
+            .gallery-container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .modal-nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .mosaic-gallery {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .mobile-title span {
+                font-size: 16px;
+            }
+        }
+
+        /* Улучшения для iOS */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+            }
+
+            .mobile-header {
+                padding-top: calc(12px + env(safe-area-inset-top));
+                height: calc(60px + env(safe-area-inset-top));
+            }
+
+            .hero-section {
+                margin-top: calc(60px + env(safe-area-inset-top));
+            }
+        }
+
+        /* Анимации */
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        /* Улучшенный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--burgundy);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-burgundy);
+        }
+
+        /* Состояние загрузки */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Мобильный хедер -->
+    <header class="mobile-header">
+        <div class="mobile-title">
+            <i class="fas fa-camera"></i>
+            <span>Олег<span class="oleg">.Галерея</span></span>
+        </div>
+        <div class="mobile-actions">
+            <button class="mobile-btn" id="search-toggle" title="Поиск">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="mobile-btn" id="view-toggle" title="Сменить вид">
+                <i class="fas fa-th-large"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero секция -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Угарные фото Олега</h1>
+            <p class="hero-subtitle">Эксклюзивная коллекция из 100 самых угарных и легендарных фотографий</p>
+            <div class="counter-badge">
+                <i class="fas fa-images"></i>
+                <span id="photo-count">100 фото</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Поиск и фильтры -->
+    <section class="filters-section" id="filters-section">
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="search-input" placeholder="Найти фото...">
+        </div>
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Все фото</button>
+            <button class="filter-tab" data-filter="funny">Смешные</button>
+            <button class="filter-tab" data-filter="epic">Эпичные</button>
+            <button class="filter-tab" data-filter="legendary">Легендарные</button>
+            <button class="filter-tab" data-filter="best">Лучшие</button>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section class="gallery-container">
+        <div class="gallery-header">
+            <h2 class="gallery-title">Коллекция</h2>
+            <div class="view-toggle">
+                <button class="view-btn active" id="grid-btn" title="Сетка">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button class="view-btn" id="list-btn" title="Список">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Мозаичный вид -->
+        <div class="mosaic-gallery" id="mosaic-gallery">
+            <!-- Фото будут загружены через JS -->
+        </div>
+
+        <!-- Списочный вид -->
+        <div class="list-gallery" id="list-gallery" style="display: none;">
+            <!-- Фото будут загружены через JS -->
+        </div>
+
+        <!-- Пагинация -->
+        <div class="pagination" id="pagination">
+            <!-- Пагинация будет создана через JS -->
+        </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="modal-img-container">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <img class="modal-img" id="modal-img" src="" alt="">
+                <div class="modal-nav">
+                    <button class="modal-nav-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="modal-nav-btn" id="next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-info">
+                <h3 class="modal-title" id="modal-title">Фото Олега №1</h3>
+                <p class="modal-desc" id="modal-desc"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Конфигурация
+        const TOTAL_PHOTOS = 100;
+        const PHOTOS_PER_PAGE = 20;
+        const IMAGES_FOLDER = "";
+
+        let currentPage = 1;
+        let currentView = 'grid';
+        let filteredPhotos = [];
+        let currentSearch = '';
+        let currentFilter = 'all';
+
+        // Описания для фотографий (сокращенные для мобильной версии)
+        const photoDescriptions = [
+            "Олег на море с идеальным загаром",
+            "Пробует экзотический фрукт впервые",
+            "В костюме супергероя на утреннике",
+            "Мастерски готовит шашлык на природе",
+            "Пытается поймать большую рыбу",
+            "В задумчивости смотрит вдаль",
+            "Смеется до слез над шуткой друга",
+            "Демонстрирует новый модный прикид",
+            "За рулем своего первого автомобиля",
+            "Наслаждается закатом на крыше",
+            "Играет на гитаре у костра",
+            "Пытается освоить скейтборд",
+            "В образе крутого байкера",
+            "За работой в домашнем офисе",
+            "С гордостью показывает урожай",
+            "В лаборатории в белом халате",
+            "На горнолыжном курорте",
+            "В костюме на важном мероприятии",
+            "Учит собаку новым трюкам",
+            "В студии за мольбертом",
+            "На велопрогулке по парку",
+            "В роли шеф-повара на кухне",
+            "Медитирует на рассвете",
+            "Играет в настольные игры",
+            "Изучает карту перед путешествием",
+            "Смотрит фейерверк",
+            "В библиотеке за чтением книги",
+            "На рыбалке ранним утром",
+            "С друзьями на футбольном матче",
+            "В саду ухаживает за цветами",
+            "Снимает свой первый влог",
+            "На концерте любимой группы",
+            "В костюме для подводного плавания",
+            "Строит скворечник своими руками",
+            "На выставке современного искусства",
+            "В роли бармена смешивает коктейль",
+            "На пляже играет в волейбол",
+            "В кафе с чашкой кофе",
+            "На карнавале в Венеции",
+            "Танцует на вечеринке",
+            "В походе у костра с гитарой",
+            "На ярмарке народных промыслов",
+            "В образе сурового викинга",
+            "С восторгом на аттракционах",
+            "За шахматной партией с другом",
+            "На фестивале воздушных змеев",
+            "В образе рок-звезды на сцене",
+            "Обнимает своего питомца",
+            "На сафари в африканской саванне",
+            "Решает головоломку",
+            "На ховерборде в парке",
+            "В роли детектива с лупой",
+            "На фестивале красок Холи",
+            "На бизнес-встрече",
+            "В роли садовника с лейкой",
+            "На соревнованиях по бегу",
+            "В космическом костюме",
+            "Раздает автографы",
+            "На лекции в университете",
+            "В роли судьи на конкурсе",
+            "Играет в пейнтбол",
+            "На ферме доит корову",
+            "В роли экскурсовода в музее",
+            "На яхте в открытом море",
+            "Ждет результатов",
+            "В роли пожарного на учении",
+            "На ярмарке вкусной еды",
+            "Слушает старинный патефон",
+            "В роли художника граффити",
+            "На чемпионате по видеоиграм",
+            "Катается на качелях",
+            "В роли репортера с микрофоном",
+            "На подиуме модного показа",
+            "Выступает с речью",
+            "В роли пилота самолета",
+            "На экскурсии в древнем замке",
+            "Помогает пожилому человеку",
+            "В роли диджея на радиостанции",
+            "На мастер-классе по гончарному делу",
+            "Собирает конструктор",
+            "В роли тренера на площадке",
+            "На фотосессии в студии",
+            "Участвует в викторине",
+            "В роли смотрителя маяка",
+            "На прогулке по осеннему лесу",
+            "Рассматривает старинные карты",
+            "В роли астронома с телескопом",
+            "На карнавале в Рио",
+            "Наблюдает за северным сиянием",
+            "В роли капитана корабля",
+            "На скалодроме покоряет высоту",
+            "Держит кубок победителя",
+            "В роли лесника на дежурстве",
+            "На прогулке с воздушным шаром",
+            "Кормит голубей на площади",
+            "В роли фокусника с картами",
+            "На дне рождения с тортом",
+            "Ест мороженое",
+            "В роли продавца на рынке",
+            "На катке с грацией фигуриста",
+            "Общается с детьми"
+        ];
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            setupEventListeners();
+            setupMobileOptimizations();
+        });
+
+        function initGallery() {
+            filteredPhotos = Array.from({length: TOTAL_PHOTOS}, (_, i) => i + 1);
+            renderGallery();
+            renderPagination();
+            updatePhotoCount();
+        }
+
+        function renderGallery() {
+            const startIndex = (currentPage - 1) * PHOTOS_PER_PAGE;
+            const endIndex = Math.min(startIndex + PHOTOS_PER_PAGE, filteredPhotos.length);
+            const currentPhotos = filteredPhotos.slice(startIndex, endIndex);
+
+            // Очистка галерей
+            document.getElementById('mosaic-gallery').innerHTML = '';
+            document.getElementById('list-gallery').innerHTML = '';
+
+            if (currentPhotos.length === 0) {
+                const emptyMessage = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--gold);">
+                    <i class="fas fa-search" style="font-size: 40px; margin-bottom: 16px; opacity: 0.5;"></i>
+                    <p>Ничего не найдено</p>
+                    <p style="font-size: 14px; margin-top: 8px; color: var(--light-gray);">Попробуйте изменить запрос</p>
+                </div>`;
+                document.getElementById('mosaic-gallery').innerHTML = emptyMessage;
+                return;
+            }
+
+            // Заполнение мозаичной галереи
+            const mosaicGallery = document.getElementById('mosaic-gallery');
+            const listGallery = document.getElementById('list-gallery');
+
+            currentPhotos.forEach(photoNumber => {
+                const descriptionIndex = (photoNumber - 1) % photoDescriptions.length;
+                const description = photoDescriptions[descriptionIndex];
+                const imagePath = `${IMAGES_FOLDER}${photoNumber}.png`;
+
+                // Мозаичный элемент
+                const mosaicItem = document.createElement('div');
+                mosaicItem.className = 'mosaic-item';
+                mosaicItem.dataset.id = photoNumber;
+                mosaicItem.innerHTML = `
+                    <div class="photo-number">${photoNumber}</div>
+                    <img class="mosaic-img" src="${imagePath}" alt="Фото Олега ${photoNumber}"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400/2c1c12/d4af37?text=${photoNumber}'">
+                `;
+                mosaicItem.addEventListener('click', () => openModal(photoNumber));
+                mosaicGallery.appendChild(mosaicItem);
+
+                // Списковый элемент
+                const listItem = document.createElement('div');
+                listItem.className = 'list-item';
+                listItem.dataset.id = photoNumber;
+                listItem.innerHTML = `
+                    <img class="list-img" src="${imagePath}" alt="Фото Олега ${photoNumber}"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/80/2c1c12/d4af37?text=${photoNumber}'">
+                    <div class="list-info">
+                        <div class="list-number">Фото №${photoNumber}</div>
+                        <div class="list-title">${description}</div>
+                    </div>
+                `;
+                listItem.addEventListener('click', () => openModal(photoNumber));
+                listGallery.appendChild(listItem);
+            });
+
+            // Показываем активную галерею
+            document.getElementById('mosaic-gallery').style.display = currentView === 'grid' ? 'grid' : 'none';
+            document.getElementById('list-gallery').style.display = currentView === 'list' ? 'flex' : 'none';
+        }
+
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            const totalPages = Math.ceil(filteredPhotos.length / PHOTOS_PER_PAGE);
+
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let html = '';
+
+            // Кнопка "Назад"
+            html += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} id="prev-page">
+                <i class="fas fa-chevron-left"></i>
+            </button>`;
+
+            // Номера страниц
+            const maxVisible = window.innerWidth < 480 ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+            if (endPage - startPage + 1 < maxVisible) {
+                startPage = Math.max(1, endPage - maxVisible + 1);
+            }
+
+            // Первая страница
+            if (startPage > 1) {
+                html += `<button class="page-btn" data-page="1">1</button>`;
+                if (startPage > 2) html += `<span style="color: var(--gold); padding: 0 4px;">...</span>`;
+            }
+
+            // Основные страницы
+            for (let i = startPage; i <= endPage; i++) {
+                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+            }
+
+            // Последняя страница
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) html += `<span style="color: var(--gold); padding: 0 4px;">...</span>`;
+                html += `<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`;
+            }
+
+            // Кнопка "Вперед"
+            html += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} id="next-page">
+                <i class="fas fa-chevron-right"></i>
+            </button>`;
+
+            pagination.innerHTML = html;
+
+            // Обработчики для пагинации
+            document.getElementById('prev-page')?.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderGallery();
+                    renderPagination();
+                    scrollToGallery();
+                }
+            });
+
+            document.getElementById('next-page')?.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderGallery();
+                    renderPagination();
+                    scrollToGallery();
+                }
+            });
+
+            document.querySelectorAll('[data-page]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentPage = parseInt(btn.dataset.page);
+                    renderGallery();
+                    renderPagination();
+                    scrollToGallery();
+                });
+            });
+        }
+
+        function scrollToGallery() {
+            document.querySelector('.gallery-container').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function updatePhotoCount() {
+            const count = filteredPhotos.length === TOTAL_PHOTOS ?
+                `${TOTAL_PHOTOS} фото` :
+                `${filteredPhotos.length} из ${TOTAL_PHOTOS} фото`;
+            document.getElementById('photo-count').textContent = count;
+        }
+
+        function searchPhotos(query) {
+            currentSearch = query.toLowerCase();
+            currentPage = 1;
+
+            if (!currentSearch.trim() && currentFilter === 'all') {
+                filteredPhotos = Array.from({length: TOTAL_PHOTOS}, (_, i) => i + 1);
+            } else {
+                filteredPhotos = [];
+
+                for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+                    const descriptionIndex = (i - 1) % photoDescriptions.length;
+                    const description = photoDescriptions[descriptionIndex].toLowerCase();
+
+                    let matchesSearch = !currentSearch.trim() || description.includes(currentSearch);
+                    let matchesFilter = currentFilter === 'all' || checkFilter(i);
+
+                    if (matchesSearch && matchesFilter) {
+                        filteredPhotos.push(i);
+                    }
+                }
+            }
+
+            renderGallery();
+            renderPagination();
+            updatePhotoCount();
+        }
+
+        function checkFilter(photoNumber) {
+            switch(currentFilter) {
+                case 'funny': return photoNumber % 4 === 0;
+                case 'epic': return photoNumber % 3 === 0;
+                case 'legendary': return photoNumber % 5 === 0;
+                case 'best': return photoNumber % 6 === 0;
+                default: return true;
+            }
+        }
+
+        function openModal(photoNumber) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+
+            const imagePath = `${IMAGES_FOLDER}${photoNumber}.png`;
+            modalImg.src = imagePath;
+
+            const descriptionIndex = (photoNumber - 1) % photoDescriptions.length;
+            modalTitle.textContent = `Фото Олега №${photoNumber}`;
+            modalDesc.textContent = photoDescriptions[descriptionIndex];
+
+            modal.dataset.currentPhoto = photoNumber;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateModal(direction) {
+            const modal = document.getElementById('modal');
+            let currentPhoto = parseInt(modal.dataset.currentPhoto);
+
+            if (direction === 'prev' && currentPhoto > 1) {
+                currentPhoto--;
+            } else if (direction === 'next' && currentPhoto < TOTAL_PHOTOS) {
+                currentPhoto++;
+            }
+
+            openModal(currentPhoto);
+        }
+
+        function setupEventListeners() {
+            // Поиск
+            const searchInput = document.getElementById('search-input');
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    searchPhotos(this.value);
+                }, 300);
+            });
+
+            // Фильтры
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    searchPhotos(searchInput.value);
+                });
+            });
+
+            // Переключение вида
+            document.getElementById('grid-btn').addEventListener('click', function() {
+                currentView = 'grid';
+                this.classList.add('active');
+                document.getElementById('list-btn').classList.remove('active');
+                document.getElementById('mosaic-gallery').style.display = 'grid';
+                document.getElementById('list-gallery').style.display = 'none';
+            });
+
+            document.getElementById('list-btn').addEventListener('click', function() {
+                currentView = 'list';
+                this.classList.add('active');
+                document.getElementById('grid-btn').classList.remove('active');
+                document.getElementById('mosaic-gallery').style.display = 'none';
+                document.getElementById('list-gallery').style.display = 'flex';
+            });
+
+            // Мобильные кнопки
+            document.getElementById('search-toggle').addEventListener('click', function() {
+                const filtersSection = document.getElementById('filters-section');
+                filtersSection.style.display = filtersSection.style.display === 'none' ? 'block' : 'none';
+            });
+
+            document.getElementById('view-toggle').addEventListener('click', function() {
+                if (currentView === 'grid') {
+                    document.getElementById('list-btn').click();
+                } else {
+                    document.getElementById('grid-btn').click();
+                }
+            });
+
+            // Модальное окно
+            document.getElementById('modal-close').addEventListener('click', closeModal);
+            document.getElementById('prev-btn').addEventListener('click', () => navigateModal('prev'));
+            document.getElementById('next-btn').addEventListener('click', () => navigateModal('next'));
+
+            document.getElementById('modal').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+
+            // Клавиши для навигации
+            document.addEventListener('keydown', function(e) {
+                const modal = document.getElementById('modal');
+                if (modal.style.display === 'flex') {
+                    if (e.key === 'Escape') closeModal();
+                    else if (e.key === 'ArrowLeft') navigateModal('prev');
+                    else if (e.key === 'ArrowRight') navigateModal('next');
+                }
+            });
+
+            // Свайпы для мобильных устройств
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.getElementById('modal-img').addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            document.getElementById('modal-img').addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) navigateModal('next');
+                    else navigateModal('prev');
+                }
+            });
+        }
+
+        function setupMobileOptimizations() {
+            // Автоматически скрывать фильтры на очень маленьких экранах
+            if (window.innerWidth < 360) {
+                document.getElementById('filters-section').style.display = 'none';
+            }
+
+            // Предотвращение масштабирования при двойном тапе
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Улучшение производительности для мобильных устройств
+            if ('connection' in navigator && navigator.connection.saveData === true) {
+                console.log('Режим экономии трафика активирован');
+            }
+        }
+    </script>
+</body>
+</html>
